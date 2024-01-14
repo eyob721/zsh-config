@@ -19,6 +19,13 @@ eval "$(starship init zsh)"
 
 # == VIM Mode =============================================================={{{
 
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
 # ZSH Key Mode
 bindkey -v              # Vim mode
 export KEYTIMEOUT=1     # For error with vi mode and autofill
@@ -90,13 +97,6 @@ alias git_commit="~/Files/Alx/Workspace/tools/terminal-tools/git_commit.sh"
 # }}}
 
 # == Completion ============================================================{{{
-
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
