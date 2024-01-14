@@ -1,33 +1,23 @@
+# == Initial ==============================================================={{{
+
 # ------------
 fpath=(/usr/share/zsh/functions $fpath)
 # ------------
 
-# Lines configured by zsh-newuser-install
+# Command history size
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.histfile
-# bindkey -e      # Emacs
-# End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/eyob721/.zshrc'
 
-# My Custom config
-# -------------------------------------------------------------
-# Default zsh prompt
-# PS1='%m%#'
+# Starship prompt theme
+eval "$(starship init zsh)"
 
-export EDITOR=nvim
-export VISUAL=nvim
+# }}}
 
-# Key mappings
-# --------------------------------------------------------------------------
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
+# == VIM Mode =============================================================={{{
 
 # ZSH Key Mode
 bindkey -v              # Vim mode
@@ -67,10 +57,9 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Start of My Custom config
-# --------------------------------------------------------------------------
-# Starship prompt theme
-eval "$(starship init zsh)"
+# }}}
+
+# == Aliases ==============================================================={{{
 
 # System aliases
 alias ls='ls --color=auto -l'
@@ -98,14 +87,16 @@ alias mysql='mariadb'
 # Experimental
 alias git_commit="~/Files/Alx/Workspace/tools/terminal-tools/git_commit.sh"
 
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-# -------------------------------------------------------------
-# End of My Custom config
+# }}}
 
-# Use modern completion system
-# autoload -Uz compinit
-# compinit
+# == Completion ============================================================{{{
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -125,8 +116,21 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# }}}
+
+# == Misc =================================================================={{{
+
 # ibus daemon autostart
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 ibus-daemon -drx
+
+# choose editor
+export EDITOR=nvim
+export VISUAL=nvim
+
+# Load zsh-syntax-highlighting; should be last.
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# }}}
