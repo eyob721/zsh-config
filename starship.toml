@@ -95,21 +95,21 @@ $character
 """
 
 [character]
-success_symbol = '[➜](bold green) '
+success_symbol = '[➜](bold #379237) '
 error_symbol = '[✗](bold red) '
-vimcmd_symbol = '[N](bold green) '
+vimcmd_symbol = '[N](bold #379237) '
 
 [fill]
 symbol = ' '
 style = 'bold green'
 
 [directory]
-read_only = " 󰌾"
-style = 'bold blue'
+read_only = "󰌾"
+style = 'bold #2C74B3'
 
 [git_branch]
 symbol = " "
-style = 'bold red'
+style = 'bold #FFD36E'
 
 
 # }}}
